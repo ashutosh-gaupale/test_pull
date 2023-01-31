@@ -1,6 +1,6 @@
 - name: action perform on local
   hosts: localhost
-  connection: local` 
+  connection: local 
   become: true
 
   tasks:
