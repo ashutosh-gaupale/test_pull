@@ -1,4 +1,5 @@
-- hosts: localhost
+- name: action perform on local
+  hosts: localhost
   become: true
 
   tasks:
