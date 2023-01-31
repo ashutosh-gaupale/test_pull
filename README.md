@@ -1,2 +1,2 @@
 # test_pull
-test of pull request
+test of push is success
