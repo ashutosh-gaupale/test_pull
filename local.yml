@@ -29,7 +29,7 @@
 #  - name: Download Microsoft Teams package
 #    command: wget -P /tmp/teams.deb https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb
   - name: Download Microsoft Teams package
-    uri:
+    get_url:
       url: https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb
       dest: /tmp/teams.deb
     environment:
