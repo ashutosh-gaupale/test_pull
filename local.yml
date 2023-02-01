@@ -10,10 +10,10 @@
  #     dest: /etc/apt/trusted.gpg.d/microsoft.gpg
  #   environment:
 #      SSL_CERT_FILE: /home/user/ITSupport/firewall/figmd-DC002-Client.pem
-    shell: curl --cacert /home/user/ITSupport/firewall/figmd-DC002-Client.pem https://github.com/ashutosh-gaupale/test_pull/blob/main/microsoft.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft.gpg
+    shell: curl --cacert /home/user/ITSupport/firewall/figmd-DC002-Client.pem https://github.com/ashutosh-gaupale/test_pull/blob/main/microsoft.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg
   - name: Add teams package repository
     apt_repository:
-      repo: deb [signed-by=/usr/share/keyrings/microsoft.gpg] http://packages.microsoft.com/repos/ms-teams stable main
+      repo: deb http://packages.microsoft.com/repos/ms-teams stable main
       state: present
       filename: teams
       update_cache: yes
