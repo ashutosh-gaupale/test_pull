@@ -1,42 +1,19 @@
----
-- name: this action perform on local
+- name: action perform on local
   hosts: localhost
   connection: local
   become: true
 
   tasks:
-  - name: Update package cache
-    apt:
+  - name: Add teams package repository GPG key
+    shell: curl https://github.com/ashutosh-gaupale/test_pull/blob/main/microsoft.gpg | apt-key --keyring /usr/share/keyrings/microsoft.gpg add -
+  - name: Add teams package repository
+    apt_repository:
+      repo: deb [arch=amd64] http://packages.microsoft.com/repos/ms-teams stable main
+      state: present
+      filename: teams
       update_cache: yes
-
-  - name: Install dependencies
+  - name: Install teams
     apt:
       name:
-        - libasound2
-        - libatk1.0-0
-        - libc6
-        - libcairo2
-        - libcups2
-        - libdbus-1-3
-        - libexpat1
-        - libfontconfig1
-        - libgcc1
-        - libgconf-2-4
-        - libgdk-pixbuf2.0-0
-        - libglib2.0-0
-      state: present
-
-#  - name: Download Microsoft Teams package
-#    command: wget -P /tmp/teams.deb https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb
-  - name: Download Microsoft Teams package
-    get_url:
-      url: https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb
-      dest: /tmp/teams.deb
-    environment:
-      SSL_CERT_FILE: /home/user/ITSupport/firewall/figmd-DC002-Client.pem
-
-  - name: Install Microsoft Teams
-    apt:
-      deb: /tmp/teams.deb
-      state: present
-...
+        - teams
+      state: latest
