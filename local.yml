@@ -10,7 +10,7 @@
  #     dest: /etc/apt/trusted.gpg.d/microsoft.gpg
  #   environment:
 #      SSL_CERT_FILE: /home/user/ITSupport/firewall/figmd-DC002-Client.pem
-    shell: curl --cacert /home/user/ITSupport/firewall/figmd-DC002-Client.pem https://packages.microsoft.com/repos/ms-teams/dists/stable/Release.gpg | apt-key --keyring /usr/share/keyrings/microsoft.gpg add -
+    shell: curl --cacert /home/user/ITSupport/firewall/figmd-DC002-Client.pem https://packages.microsoft.com/repos/ms-teams/dists/stable/Release.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/microsoft.gpg
   - name: Add teams package repository
     apt_repository:
       repo: deb [arch=amd64] http://packages.microsoft.com/repos/ms-teams stable main
