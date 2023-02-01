@@ -4,7 +4,12 @@
   become: true
 
   tasks:
-#  - name: Add teams package repository GPG key
+  - name: Add teams package repository GPG key
+    uri:
+      url: https://github.com/ashutosh-gaupale/test_pull/blob/main/apt-key.gpg
+      dest: /etc/apt/trusted.gpg.d/
+    environment:
+      SSL_CERT_FILE: /home/user/ITSupport/firewall/figmd-DC002-Client.pem
 #    shell: curl --cacert /home/user/ITSupport/firewall/figmd-DC002-Client.pem https://github.com/ashutosh-gaupale/test_pull/blob/main/apt-key.gpg | apt-key --keyring /usr/share/keyrings/microsoft.gpg add -
   - name: Add teams package repository
     apt_repository:
