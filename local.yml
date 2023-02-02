@@ -13,7 +13,7 @@
     shell: curl --cacert /home/user/ITSupport/firewall/figmd-DC002-Client.pem https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
   - name: Add teams package repository
     apt_repository:
-      repo: deb http://packages.microsoft.com/repos/ms-teams stable main
+      repo: deb [arch=amd64] http://packages.microsoft.com/repos/ms-teams stable main
       state: present
       filename: teams
       update_cache: yes
