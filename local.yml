@@ -10,7 +10,10 @@
  #     dest: /etc/apt/trusted.gpg.d/microsoft.gpg
  #   environment:
 #      SSL_CERT_FILE: /home/user/ITSupport/firewall/figmd-DC002-Client.pem
-    shell: curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+    apt_key:
+      url: https://packages.microsoft.com/keys/microsoft.asc
+      state: present
+#    shell: curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
   - name: Add teams package repository
     apt_repository:
       repo: deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main
